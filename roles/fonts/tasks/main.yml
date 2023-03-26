@@ -18,9 +18,9 @@
   become_method: sudo
   when: fontconfig.stat.exists != true
 
-- name: Download powerline fonts git repository
+- name: Download nerd fonts git repository
   ansible.builtin.git:
-    repo: 'https://github.com/powerline/fonts.git'
+    repo: 'https://github.com/ryanoasis/nerd-fonts.git'
     dest: /tmp/fonts
 
 - name: Ensure the user has a '~/.local/share/fonts' directory  
@@ -31,7 +31,7 @@
     group: "{{ ansible_env.USER }}"
 
 - name: Copy fonts to the user's '~/.local/share/fonts' directory
-  ansible.builtin.command: cp -r /tmp/fonts/{{ item }} {{ ansible_env.HOME }}/.local/share/fonts/
+  ansible.builtin.command: cp -r /tmp/fonts/patched-fonts/{{ item }} {{ ansible_env.HOME }}/.local/share/fonts/
   loop: "{{ install_fonts }}"
   notify:
     Update font cache
