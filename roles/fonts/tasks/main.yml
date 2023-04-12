@@ -21,7 +21,8 @@
 - name: Download nerd fonts git repository
   ansible.builtin.git:
     repo: 'https://github.com/ryanoasis/nerd-fonts.git'
-    dest: /tmp/fonts
+    depth: 1
+    dest: "/tmp/fonts"
 
 - name: Ensure the user has a '~/.local/share/fonts' directory  
   ansible.builtin.file:

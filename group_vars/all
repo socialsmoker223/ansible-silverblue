@@ -6,11 +6,14 @@ layered_package_install:
   - python3-psutil
   - vim
   - zsh
-  - docker
+  - distrobox
+  - tmux
+  - rofi
+  - feh
 
 base_package_remove:
-  - firefox
   - firefox-langpacks
+  - firefox
 
 # The 'flatpak' role #
 ######################
@@ -24,13 +27,17 @@ flatpak_remote_install:
 flatpak_package_install:
   - { remote: 'flathub', package: 'org.mozilla.firefox' }
   - { remote: 'flathub', package: 'org.wezfurlong.wezterm' }
+  - { remote: 'flathub', package: 'org.telegram.desktop' }
+  - { remote: 'flathub', package: 'org.signal.Signal' }
+  - { remote: 'flathub', package: 'com.discordapp.Discord' }
+  - { remote: 'flathub', package: 'com.bitwarden.desktop' }
 
 # The 'fonts' role #
 ####################
 install_fonts:
   - FiraMono
   - Hack
-  - JetbrainsMono
+  - JetBrainsMono
   - NerdFontsSymbolsOnly
 
 # The 'settings' role #
@@ -50,4 +57,5 @@ dconf_settings:
 # The 'os_updates' role #
 #########################
 
-update_policy: stage idle_timeout: '600'
+update_policy: stage
+idle_timeout: '600'
